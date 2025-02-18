@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD
 // require('dotenv').config();
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
+=======
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
 
 const Login = () => {
     const [enrollmentNo, setEnrollmentNo] = useState("");
@@ -18,7 +21,11 @@ const Login = () => {
         setError("");
 
         try {
+<<<<<<< HEAD
             const response = await fetch(`${BASE_URL}/users/login`, {
+=======
+            const response = await fetch("http://localhost:5000/api/users/login", {
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ enrollmentNo, password }),

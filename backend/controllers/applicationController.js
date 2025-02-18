@@ -1,6 +1,7 @@
 import Application from "../models/Application.js";
 import Job from "../models/Job.js";
 
+<<<<<<< HEAD
 
 export const getApplication = async (req, res) => {
     try {
@@ -12,6 +13,8 @@ export const getApplication = async (req, res) => {
 };
 
 
+=======
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
 // ✅ Apply for a job
 export const applyJob = async (req, res) => {
     const { jobId, studentId } = req.body;

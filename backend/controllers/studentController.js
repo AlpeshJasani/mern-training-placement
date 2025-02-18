@@ -1,4 +1,5 @@
 import Student from "../models/Student.js";
+<<<<<<< HEAD
 import Application from "../models/Application.js";
 
 
@@ -52,15 +53,30 @@ export const updateStudent = async (req, res) => {
         res.json({ message: "Student updated successfully", student });
     } catch (error) {
         console.error(error);  // Log error for debugging
+=======
+
+// Update student details
+export const updateStudent = async (req, res) => {
+    try {
+        const student = await Student.findOneAndUpdate({ enrollmentNo: req.params.enrollmentNo }, req.body, { new: true });
+        if (!student) {
+            return res.status(404).json({ message: "Student not found" });
+        }
+        res.json({ message: "Student updated successfully", student });
+    } catch (error) {
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
         res.status(500).json({ message: "Error updating student", error });
     }
 };
 
+<<<<<<< HEAD
 
 
 
 
 
+=======
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
 // Get a specific student by enrollment number
 export const getStudentByEnrollmentNo = async (req, res) => {
     try {
@@ -73,6 +89,7 @@ export const getStudentByEnrollmentNo = async (req, res) => {
         res.status(500).json({ message: "Error fetching student", error });
     }
 };
+<<<<<<< HEAD
 
 
 
@@ -154,3 +171,5 @@ export const getStudentsByBranch = async (req, res) => {
         res.status(500).json({ message: "Error fetching branch data", error });
     }
 };
+=======
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1

@@ -1,6 +1,7 @@
 import Job from "../models/Job.js";
 
 export const createJob = async (req, res) => {
+<<<<<<< HEAD
     try {
         const { title, company, location, description, branch, criteria, requirements, salary, deadline } = req.body;
 
@@ -151,6 +152,13 @@ export const updateJob = async (req, res) => {
 
 
 
+=======
+    const job = new Job(req.body);
+    await job.save();
+    res.status(201).json({ message: "Job created successfully" });
+};
+
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
 export const getJobs = async (req, res) => {
     try {
         const jobs = await Job.find().sort({ _id: -1 }); // Sort by _id in descending order (latest first)

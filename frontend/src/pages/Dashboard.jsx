@@ -6,16 +6,24 @@ const Dashboard = () => {
     const [stats, setStats] = useState({ jobs: 0, applications: 0, students: 0 });
     const [jobs, setJobs] = useState([]);
     const [applications, setApplications] = useState([]);
+<<<<<<< HEAD
     const [selectedApplicants, setSelectedApplicants] = useState([]);  // Ensuring it's an array
+=======
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
 
     useEffect(() => {
         const fetchDashboardData = async () => {
             try {
+<<<<<<< HEAD
                 const jobRes = await fetch("http://localhost:4000/api/jobs");
+=======
+                const jobRes = await fetch("http://localhost:5000/api/jobs");
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
                 const jobData = await jobRes.json();
                 setJobs(jobData);
                 setStats((prev) => ({ ...prev, jobs: jobData.length }));
 
+<<<<<<< HEAD
                 const appRes = await fetch("http://localhost:4000/api/applications");
                 const appData = await appRes.json();
                 console.log(appData.length);
@@ -29,6 +37,16 @@ const Dashboard = () => {
                 const selectedRes = await fetch("http://localhost:4000/api/student/selected");
                 const selectedData = await selectedRes.json();
                 setSelectedApplicants(Array.isArray(selectedData) ? selectedData : []); // Ensure it's an array
+=======
+                const appRes = await fetch("http://localhost:5000/api/applications"); // Pending
+                const appData = await appRes.json();
+                setApplications(appData);
+                setStats((prev) => ({ ...prev, applications: appData.length }));
+
+                const studentRes = await fetch("http://localhost:5000/api/students"); // Pending
+                const studentData = await studentRes.json();
+                setStats((prev) => ({ ...prev, students: studentData.length }));
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
             } catch (error) {
                 console.error("Error fetching dashboard data:", error);
             }
@@ -38,9 +56,15 @@ const Dashboard = () => {
     }, []);
 
     return (
+<<<<<<< HEAD
         <div className='max-w-6xl mx-auto mt-20 p-6'>
             <h2 className='text-3xl font-bold'>Admin Dashboard</h2>
             <p className='text-gray-500 mt-1'>Welcome (Admin)</p>
+=======
+        <div className='max-w-6xl mx-auto mt-10 p-6'>
+            <h2 className='text-3xl font-bold'>Admin Dashboard</h2>
+            <p className='text-gray-500 mt-1'>Welcome, {user.name} (Admin)</p>
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
 
             {/* Stats Section */}
             <div className='grid grid-cols-3 gap-6 mt-6'>
@@ -61,6 +85,7 @@ const Dashboard = () => {
                 <h3 className='text-xl font-semibold'>Recent Job Listings</h3>
                 <div className='bg-white shadow-md rounded-md p-4 mt-2'>
                     <table className='w-full text-left'>
+<<<<<<< HEAD
                         <thead className="bg-purple-200">
                             <tr className='border-b'>
                                 <th className='p-2'>Company</th>
@@ -75,6 +100,21 @@ const Dashboard = () => {
                                     <td className='p-2'>{job.company}</td>
                                     <td className='p-2'>{job.title}</td>
                                     <td className='p-2'>{job.location}</td>
+=======
+                        <thead>
+                            <tr className='border-b'>
+                                <th className='p-2'>Title</th>
+                                <th className='p-2'>Location</th>
+                                <th className='p-2'>Openings</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {jobs.slice(0, 5).map((job) => (
+                                <tr key={job._id} className='border-b'>
+                                    <td className='p-2'>{job.title}</td>
+                                    <td className='p-2'>{job.location}</td>
+                                    <td className='p-2'>{job.openings}</td>
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
                                 </tr>
                             ))}
                         </tbody>
@@ -82,6 +122,7 @@ const Dashboard = () => {
                 </div>
             </div>
 
+<<<<<<< HEAD
             {/* Recent Selected Applicants Section */}
             <div className='mt-10'>
                 <h3 className='text-xl font-semibold'>Recent Selected Applicants</h3>
@@ -112,6 +153,32 @@ const Dashboard = () => {
                                     <td colSpan="5" className="p-2 text-center">No selected applicants found.</td>
                                 </tr>
                             )}
+=======
+            {/* Recent Applications Section */}
+            <div className='mt-10'>
+                <h3 className='text-xl font-semibold'>Recent Applications</h3>
+                <div className='bg-white shadow-md rounded-md p-4 mt-2'>
+                    <table className='w-full text-left'>
+                        <thead>
+                            <tr className='border-b'>
+                                <th className='p-2'>Student ID</th>
+                                <th className='p-2'>Job Title</th>
+                                <th className='p-2'>Status</th>
+                                <th className='p-2'>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {applications.slice(0, 5).map((app) => (
+                                <tr key={app._id} className='border-b'>
+                                    <td className='p-2'>{app.studentId}</td>
+                                    <td className='p-2'>{app.jobId.title}</td>
+                                    <td className='p-2'>{app.status}</td>
+                                    <td className='p-2'>
+                                        <button className='bg-yellow-500 text-white px-3 py-1 rounded'>Update Status</button>
+                                    </td>
+                                </tr>
+                            ))}
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
                         </tbody>
                     </table>
                 </div>

@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+<<<<<<< HEAD
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
+=======
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
 const Register = () => {
     const [formData, setFormData] = useState({
         name: "",
@@ -25,7 +28,11 @@ const Register = () => {
         setSuccess(false);
 
         try {
+<<<<<<< HEAD
             const response = await fetch(`${BASE_URL}/users/register`, {
+=======
+            const response = await fetch("http://localhost:5000/api/users/register", {
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),
@@ -84,14 +91,20 @@ const Register = () => {
                     required
                     className='w-full p-2 border rounded mb-2'
                 />
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
                 <select name='role' value={formData.role} onChange={handleChange} className='w-full p-2 border rounded mb-2'>
                     <option value='student'>Student</option>
                     <option value='admin'>Admin</option>
                 </select>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
                 <button type='submit' className='w-full bg-green-500 text-white p-2 rounded'>
                     Register
                 </button>

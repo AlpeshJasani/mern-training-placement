@@ -8,9 +8,12 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashboard";
 import JobDetails from "./pages/JobDetails";
+<<<<<<< HEAD
 import StudentAnalytics from "./pages/StudentAnalytics";
 import JobPostingForm from "./pages/Jobposting";
 import AdminAnalytics from "./pages/AdminAnalytics";
+=======
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
 
 export default function App() {
     return (
@@ -25,9 +28,12 @@ export default function App() {
                 <Route path='/dashboard' element={<Dashboard />} />
                 <Route path='/profile' element={<Profile />} />
                 <Route path='/jobs/:id' element={<JobDetails />} />
+<<<<<<< HEAD
                 <Route path="/student-analytics" element={<StudentAnalytics />} />
                 <Route path="/admin-analytics" element={<AdminAnalytics />} />
                 <Route path="/posting/:jobId?" element={<JobPostingForm/>}/>
+=======
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
             </Routes>
         </>
     );

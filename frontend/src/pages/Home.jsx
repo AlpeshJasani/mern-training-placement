@@ -4,6 +4,7 @@ import tnpImg from "../assets/tnp.jpg"; // Training & Placement Cell image
 import companiesImg from "../assets/companies_tree.jpg"; // Companies tree image
 import logo1 from "../assets/logo1.png"; // College logo 1
 import logo2 from "../assets/logo2.png"; // College logo 2
+<<<<<<< HEAD
 import { FaSearch } from "react-icons/fa";
 
 // const BASE_URL = process.env.BASE_URL;
@@ -12,6 +13,12 @@ const Home = () => {
     return (
         // <div className="min-h-screen bg-black">
         <div className='w-full '>
+=======
+
+const Home = () => {
+    return (
+        <div className='w-full'>
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
             {/* Hero Section */}
             <header
                 className='relative h-screen flex items-center justify-center text-center text-white bg-cover bg-center'
@@ -22,6 +29,7 @@ const Home = () => {
                     <img src={logo1} alt='SCET Logo' className='mx-auto mb-4 w-28 h-auto' />
                     <h1 className='text-4xl font-bold uppercase tracking-widest'>Sarvajanik College of Engineering & Technology</h1>
                     <p className='mt-3 text-lg text-gray-300'>Empowering Engineers, Shaping Futures</p>
+<<<<<<< HEAD
 
                     <Link
     to='/jobs'
@@ -32,6 +40,11 @@ const Home = () => {
 </Link>
 
 
+=======
+                    <Link to='/jobs' className='mt-6 inline-block bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold transition'>
+                        Explore Opportunities
+                    </Link>
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
                 </div>
             </header>
 
@@ -112,7 +125,10 @@ const Home = () => {
                 <p className='text-center text-gray-500 text-sm mt-6'>&copy; {new Date().getFullYear()} SCET. All rights reserved.</p>
             </footer>
         </div>
+<<<<<<< HEAD
         // </div>
+=======
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
     );
 };
 

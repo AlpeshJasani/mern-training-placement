@@ -1,22 +1,33 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+<<<<<<< HEAD
 import { IndianRupee, Briefcase, Calendar, Users, MapPin, BookOpen } from "lucide-react";
 
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
+=======
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
 
 const JobDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [job, setJob] = useState(null);
     const [appliedStudents, setAppliedStudents] = useState([]);
+<<<<<<< HEAD
     const { user } = useAuth();
+=======
+    const { user } = useAuth(); // Get logged-in user info
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
 
     useEffect(() => {
         const fetchJob = async () => {
             try {
+<<<<<<< HEAD
                 const response = await fetch(`${BASE_URL}/jobs/${id}`);
+=======
+                const response = await fetch(`http://localhost:5000/api/jobs/${id}`);
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
                 if (!response.ok) throw new Error("Failed to fetch job details");
                 const data = await response.json();
                 setJob(data);
@@ -27,7 +38,11 @@ const JobDetails = () => {
 
         const fetchApplications = async () => {
             try {
+<<<<<<< HEAD
                 const response = await fetch(`${BASE_URL}/applications/job/${id}`);
+=======
+                const response = await fetch(`http://localhost:5000/api/applications/job/${id}`);
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
                 if (!response.ok) throw new Error("Failed to fetch applications");
                 const data = await response.json();
                 setAppliedStudents(data);
@@ -47,13 +62,26 @@ const JobDetails = () => {
         }
 
         const applicationData = { jobId: id, studentId: user.enrollmentNo };
+<<<<<<< HEAD
         try {
             const response = await fetch(`${BASE_URL}/applications/apply`, {
+=======
+        console.log("Sending Application Data:", applicationData);
+
+        try {
+            const response = await fetch("http://localhost:5000/api/applications/apply", {
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(applicationData),
             });
+<<<<<<< HEAD
             const data = await response.json();
+=======
+
+            const data = await response.json();
+            console.log("Server Response:", data);
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
             alert(data.message);
         } catch (error) {
             console.error("Error applying for job:", error);
@@ -62,11 +90,23 @@ const JobDetails = () => {
 
     const handleDelete = async () => {
         if (!window.confirm("Are you sure you want to delete this job?")) return;
+<<<<<<< HEAD
         try {
             const response = await fetch(`${BASE_URL}/jobs/${id}`, { method: "DELETE" });
             if (response.ok) {
                 alert("Job deleted successfully!");
                 navigate("/jobs");
+=======
+
+        try {
+            const response = await fetch(`http://localhost:5000/api/jobs/${id}`, {
+                method: "DELETE",
+            });
+
+            if (response.ok) {
+                alert("Job deleted successfully!");
+                navigate("/jobs"); // Redirect to jobs list
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
             } else {
                 alert("Error deleting job.");
             }
@@ -75,6 +115,7 @@ const JobDetails = () => {
         }
     };
 
+<<<<<<< HEAD
 
     const handleEdit = (job, event) => {
         event?.stopPropagation(); // Prevents unwanted event bubbling
@@ -87,10 +128,19 @@ const JobDetails = () => {
     const handleStatusChange = async (studentId, newStatus) => {
         try {
             const response = await fetch(`${BASE_URL}/applications/updateStatus`, {
+=======
+    const handleStatusChange = async (studentId, newStatus) => {
+        try {
+            const response = await fetch(`http://localhost:5000/api/applications/updateStatus`, {
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ jobId: id, studentId, status: newStatus }),
             });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
             if (response.ok) {
                 alert("Status updated successfully!");
                 setAppliedStudents((prev) => prev.map((app) => (app.studentId === studentId ? { ...app, status: newStatus } : app)));
@@ -102,6 +152,7 @@ const JobDetails = () => {
         }
     };
 
+<<<<<<< HEAD
     if (!job) return <p className='text-center mt-10 text-lg font-semibold text-gray-500'>Loading job details...</p>;
 
     return (
@@ -184,16 +235,61 @@ const JobDetails = () => {
                             <th className='border p-3'>Enrollment No</th>
                             <th className='border p-3'>Status</th>
                             {user?.role === "admin" && <th className='border p-3'>Change Status</th>}
+=======
+    if (!job) return <p className='text-center mt-10'>Loading job details...</p>;
+
+    return (
+        <div className='max-w-3xl mx-auto mt-10 p-6 bg-white shadow-md rounded-md'>
+            <h2 className='text-3xl font-bold'>{job.title}</h2>
+            <p className='text-gray-600'>{job.location}</p>
+            <p className='text-green-600 font-semibold'>💰 Salary: {job.salary} INR</p>
+            <p className='text-blue-600'>📌 Openings: {job.openings}</p>
+            <p className='text-red-500'>🗓 Last Date: {new Date(job.lastDate).toLocaleDateString()}</p>
+            <p className='mt-4'>{job.description}</p>
+
+            {/* Show Apply button for Students, Delete button for Admin */}
+            {user?.role === "admin" ? (
+                <button onClick={handleDelete} className='mt-6 w-full bg-red-500 text-white p-2 rounded'>
+                    Delete Job
+                </button>
+            ) : (
+                <button onClick={handleApply} className='mt-6 w-full bg-green-500 text-white p-2 rounded'>
+                    Apply Now
+                </button>
+            )}
+
+            {/* List of Applied Students */}
+            <h3 className='mt-8 text-2xl font-semibold'>Applied Students</h3>
+            {appliedStudents.length > 0 ? (
+                <table className='w-full mt-4 border-collapse border border-gray-300'>
+                    <thead>
+                        <tr className='bg-gray-100'>
+                            <th className='border p-2'>Enrollment No</th>
+                            <th className='border p-2'>Status</th>
+                            {user?.role === "admin" && <th className='border p-2'>Change Status</th>}
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
                         </tr>
                     </thead>
                     <tbody>
                         {appliedStudents.map((student) => (
                             <tr key={student.studentId} className='text-center'>
+<<<<<<< HEAD
                                 <td className='border p-3'>{student.studentId}</td>
                                 <td className='border p-3'>{student.status}</td>
                                 {user?.role === "admin" && (
                                     <td className='border p-3'>
                                         <select value={student.status} onChange={(e) => handleStatusChange(student.studentId, e.target.value)} className='p-2 border rounded'>
+=======
+                                <td className='border p-2'>{student.studentId}</td>
+                                <td className='border p-2'>{student.status}</td>
+                                {user?.role === "admin" && (
+                                    <td className='border p-2'>
+                                        <select
+                                            value={student.status}
+                                            onChange={(e) => handleStatusChange(student.studentId, e.target.value)}
+                                            className='p-1 border rounded'
+                                        >
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
                                             <option value='applied'>Applied</option>
                                             <option value='shortlisted'>Shortlisted</option>
                                             <option value='selected'>Selected</option>
@@ -205,7 +301,13 @@ const JobDetails = () => {
                         ))}
                     </tbody>
                 </table>
+<<<<<<< HEAD
             ) : <p className='text-center mt-4 text-gray-500'>No applications yet.</p>}
+=======
+            ) : (
+                <p className='text-center mt-4 text-gray-500'>No applications yet.</p>
+            )}
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
         </div>
     );
 };

@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+<<<<<<< HEAD
 const jobSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
@@ -17,5 +18,16 @@ const jobSchema = new mongoose.Schema(
     createdAt: { type: Date, default: Date.now },
   }
 );
+=======
+const jobSchema = new mongoose.Schema({
+    title: String,
+    description: String,
+    location: String,
+    salary: Number,
+    openings: Number,
+    lastDate: Date,
+    applicants: [{ type: mongoose.Schema.Types.ObjectId, ref: "Student" }],
+});
+>>>>>>> 0eae3fb47b97a6e46b253770a4338c51d153bdb1
 
 export default mongoose.model("Job", jobSchema);
